@@ -10,7 +10,7 @@ import red.mlz.common.module.goods.entity.Category;
 import red.mlz.common.module.goods.service.CategoryService;
 import red.mlz.common.module.goods.service.GoodsService;
 import red.mlz.common.utils.Response;
-import red.mlz.common.mq.RabbitMQConfig;
+import red.mlz.console.mq.RabbitMQConfig;
 
 import java.math.BigInteger;
 import java.util.List;

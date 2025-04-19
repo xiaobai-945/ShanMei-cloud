@@ -1,10 +1,12 @@
-package red.mlz.common.mq;
+package red.mlz.console.mq;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 @Configuration
+@Component
 public class RabbitMQConfig {
     // 定义队列名称
     public static final String GOODS_DELETE_QUEUE = "goods.delete.queue";
