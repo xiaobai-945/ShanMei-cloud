@@ -1,0 +1,19 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: cloud-eureka-server
+
+eureka:
+  instance:
+    appname: eureka-server
+  client:
+    register-with-eureka: false # false:
+    fetch-registry: false # false:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 2000
+    renewal-percent-threshold: 0.49
