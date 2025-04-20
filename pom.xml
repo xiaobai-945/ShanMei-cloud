@@ -8,9 +8,12 @@
   <modules>
     <module>eureka-server</module>
     <module>common</module>
-    <module>app</module>
-    <module>console</module>
-    <module>auth</module>
+    <module>app-provider</module>
+    <module>console-provider</module>
+    <module>auth-provider</module>
+    <module>app-consumer</module>
+    <module>console-consumer</module>
+    <module>auth-consumer</module>
   </modules>
 
   <version>1.0-SNAPSHOT</version>

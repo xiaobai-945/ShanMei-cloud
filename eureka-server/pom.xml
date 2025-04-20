@@ -8,7 +8,7 @@
     </parent>
     <artifactId>eureka-server</artifactId>
     <packaging>jar</packaging>
-    <name>eureka-server Maven Webapp</name>
+    <name>eureka-server</name>
     <url>http://maven.apache.org</url>
     <properties>
         <java.version>8</java.version>
