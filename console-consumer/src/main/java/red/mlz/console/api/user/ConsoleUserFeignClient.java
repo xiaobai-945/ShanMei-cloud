@@ -10,7 +10,7 @@ import red.mlz.common.utils.Response;
 import javax.servlet.http.HttpSession;
 
 
-@FeignClient(name="consoler-provider")
+@FeignClient(name="console-provider")
 public interface ConsoleUserFeignClient {
 
 
