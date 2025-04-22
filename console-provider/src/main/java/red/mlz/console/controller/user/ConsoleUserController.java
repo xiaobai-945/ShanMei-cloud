@@ -1,6 +1,4 @@
 package red.mlz.console.controller.user;
-
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +9,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import red.mlz.common.module.user.entity.User;
 import red.mlz.common.utils.BaseUtils;
 import red.mlz.common.utils.IpUtils;
-import red.mlz.common.utils.Response;
-import red.mlz.common.utils.SpringUtils;
-import red.mlz.console.domain.user.UserInfoVo;
 import red.mlz.console.module.user.service.BaseUserService;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -28,37 +21,39 @@ public class ConsoleUserController {
 
 
     @RequestMapping("/user/login/web")
-    public Response loginWeb(
-                             HttpSession httpSession,
+    public boolean loginWeb(
                              @RequestParam(name = "phone") String phone,
-                             @RequestParam(name = "password") String password,
-                             @RequestParam(name = "remember") boolean remember) {
+                             @RequestParam(name = "password") String password) {
 
 
         boolean result;
-        if (remember) {
-            result = baseUserService.login(phone, password);
-        } else {
-            result = baseUserService.login(phone, "86", password, false, false, 0);
-        }
-        if (!result) {
-            return new Response(1010);
-        }
 
+        result = baseUserService.login(phone, password);
+
+        return result;
+    }
+    @RequestMapping("/user/login/remember")
+    public boolean loginRemember(
+                                     @RequestParam(name = "phone") String phone,
+                                     @RequestParam(name = "password") String password) {
+        boolean result;
+        result = baseUserService.login(phone, "86", password, false, false, 0);
+        return result;
+
+    }
+
+    @RequestMapping("user/login/phone")
+    public User loginGetPhone(@RequestParam(name = "phone") String phone) {
+        User user = baseUserService.getByPhone(phone);
+
+        return user;
+    }
+
+    @RequestMapping("user/login/web/token")
+    public void loginGetToken(@RequestParam(name = "phone") String phone) {
         User user = baseUserService.getByPhone(phone);
         HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest();
         baseUserService.refreshUserLoginContext(user.getId(), IpUtils.getIpAddress(request), BaseUtils.currentSeconds());
 
-        UserInfoVo userInfo = new UserInfoVo();
-        userInfo.setUserGender(user.getGender());
-        userInfo.setUserName(user.getUsername());
-        userInfo.setUserPhone(user.getPhone());
-        userInfo.setUserAvatar(user.getAvatar());
-
-        // 写session
-        httpSession.setAttribute(SpringUtils.getProperty("application.session.key"), JSON.toJSONString(user));
-
-        return new Response(1001, userInfo);
     }
-
 }

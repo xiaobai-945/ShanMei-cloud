@@ -52,18 +52,18 @@ public class UploadController {
     @RequestMapping("/uploadImage")
     public Response uploadImages(@RequestParam("file") MultipartFile file) {
 
-        return new Response<>(1001,"上传成功,图片地址："+aliOssUtility.uploadImage(file));
+        return new Response<>(1001, "上传成功,图片地址：" + aliOssUtility.uploadImage(file));
     }
 
     @RequestMapping("/uploadVideo")
     public Response uploadVideo(@RequestParam("file") MultipartFile file) {
 
-        return new Response<>(1001,"上传成功，视频地址:"+aliOssUtility.uploadVideo(file));
+        return new Response<>(1001, "上传成功，视频地址:" + aliOssUtility.uploadVideo(file));
     }
 
     @RequestMapping("/uploadFile")
     public Response uploadFile(@RequestParam("file") MultipartFile file) {
 
-        return new Response(1001, "上传成功，文件地址:"+aliOssUtility.uploadFile(file));
+        return new Response(1001, "上传成功，文件地址:" + aliOssUtility.uploadFile(file));
     }
 }

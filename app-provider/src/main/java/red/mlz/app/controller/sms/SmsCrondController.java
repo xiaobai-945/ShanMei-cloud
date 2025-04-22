@@ -17,10 +17,10 @@ public class SmsCrondController {
      * 多线程发送
      */
     @RequestMapping("send/thread")
-    public Response sendThread(@RequestParam(name = "phoneNumbers") String phoneNumbers){
+    public Response sendThread(@RequestParam(name = "phoneNumbers") String phoneNumbers) {
 
         int result = smsCrondService.sendThread(phoneNumbers);
-        return new Response(1001,result);
+        return new Response(1001, result);
 
     }
 
@@ -28,8 +28,8 @@ public class SmsCrondController {
      * 同步发送
      */
     @RequestMapping("send/sync")
-    public Response sendSync(@RequestParam(name = "phone") String phone){
-         return new Response(1001,smsCrondService.sendSmsSync(phone));
+    public Response sendSync(@RequestParam(name = "phone") String phone) {
+        return new Response(1001, smsCrondService.sendSmsSync(phone));
     }
 
     /**
@@ -38,7 +38,7 @@ public class SmsCrondController {
     @RequestMapping("send/async")
     public Response sendAsync(@RequestParam(name = "phone") String phone) {
 
-        return new Response(1001,smsCrondService.sendAsync(phone));
+        return new Response(1001, smsCrondService.sendAsync(phone));
 
     }
 
